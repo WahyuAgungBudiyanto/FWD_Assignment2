@@ -1,6 +1,9 @@
 import React, { useState, useReducer } from "react";
 import TodoItem from "./TodoItem";
 
+import { Form, InputGroup, Button, ButtonGroup } from "react-bootstrap";
+import { FcPlus } from "react-icons/fc";
+
 function reducer(todos, action) {
   switch (action.type) {
     case "add-todo":
@@ -35,19 +38,27 @@ function Todos() {
 
   return (
     <div>
-      <div className="container">
-        <div className="row">
-          <div className="col-4 bg-danger">
+      <form onSubmit={handleSubmit} className="mb-5">
+        <div className="container-fluid col-md-5 shadow mx-auto p-3 bg-white rounded">
+          <InputGroup>
+            <InputGroup.Text>
+              <FcPlus />
+            </InputGroup.Text>
+            <Form.Control type="text" placeholder="What's your working on?" value={text} onChange={(event) => setText(event.target.value)} required />
+            <Button className="mx-2" style={{ height: "auto", width: "auto" }} variant="primary" type="Submit">
+              Add
+            </Button>{" "}
+          </InputGroup>
 
+          <div className="pt-3" style={{ display: "flex", marginLeft: "auto" }}>
+            <ButtonGroup aria-label="Basic example">
+              <Button variant="outline-primary">All</Button>
+              <Button variant="outline-primary">Progress</Button>
+              <Button variant="outline-primary">Completed</Button>
+            </ButtonGroup>
           </div>
         </div>
-      </div>
-
-
-      {/* <form onSubmit={handleSubmit}>
-        <input type="text" value={text} onChange={(event) => setText(event.target.value)} />
-        <button type="Submit">Add Todo</button>
-      </form> */}
+      </form>
 
       {todos.map((todo) => {
         return <TodoItem key={todo.id} todo={todo} dispatch={dispatch} />;
