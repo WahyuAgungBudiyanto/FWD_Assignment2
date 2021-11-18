@@ -12,15 +12,20 @@ function TodoItem({ todo, dispatch }) {
                 <div className="mt-1" style={{ float: "left", display: "flex" }}>
                   <input className="mt-2 mx-2" type="checkbox" onChange={() => dispatch({ type: "flip", payload: { id: todo.id } })} />
                   <span style={{ textDecoration: todo.complete ? "line-through" : "none" }}>{todo.text}</span>
-                  <Badge className="mt-1 mx-2" pill color={todo.complete ? "danger" : "success"}>
+                  <Badge className="mt-1 mx-2" pill color={todo.complete ? "info" : "success"}>
                     {todo.complete ? "Completed" : "On Going"}
-                    Progress
                   </Badge>
                 </div>
                 <div style={{ float: "right", display: "flex" }}>
-                  <Button size="sm" variant="success" onClick={() => dispatch({ type: "delete", payload: { id: todo.id } })}>
+                  {todo.complete ? (
+                    <Button size="sm" variant="warning" onClick={() => dispatch({ type: "flip", payload: { id: todo.id } })}>
                     <BsFillCheckSquareFill />
                   </Button>
+                  ) : (
+                    <Button size="sm" variant="success" onClick={() => dispatch({ type: "flip", payload: { id: todo.id } })}>
+                      <BsFillCheckSquareFill />
+                    </Button>
+                  )}
                   <Button size="sm" variant="danger" className="mx-1" onClick={() => dispatch({ type: "delete", payload: { id: todo.id } })}>
                     <BsFillTrashFill />
                   </Button>

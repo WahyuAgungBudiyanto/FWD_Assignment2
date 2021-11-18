@@ -52,8 +52,8 @@ function Todos() {
 
           <div className="pt-3" style={{ display: "flex", marginLeft: "auto" }}>
             <ButtonGroup aria-label="Basic example">
-              <Button variant="outline-primary">All</Button>
-              <Button variant="outline-primary">Progress</Button>
+              <Button variant="outline-primary active">All</Button>
+              <Button variant="outline-primary">On Going</Button>
               <Button variant="outline-primary">Completed</Button>
             </ButtonGroup>
           </div>
